@@ -2,15 +2,14 @@ specVersion: 0.0.2
 description: Mimo Liquidation Checker
 repository: https://github.com/larrythecucumber321/mimo-liquidiation
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
-
   - kind: ethereum/contract
     name: VaultsCore
     network: mainnet
     source:
-      address: '0x4026bdcd023331d52533e3374983ded99ccbb6d4'
-      startBlock: 11952494 
+      address: "0x4026bdcd023331d52533e3374983ded99ccbb6d4"
+      startBlock: 11952494
       abi: VaultsCore
     mapping:
       kind: ethereum/events
@@ -20,9 +19,9 @@ dataSources:
         - Vault
       abis:
         - name: VaultsCore
-          file: ./abis/VaultsCore.json
+          file: VaultsCore/abis/VaultsCore.json
         - name: VaultsDataProvider
-          file: ./abis/VaultsDataProvider.json
+          file: VaultsCore/abis/VaultsDataProvider.json
       eventHandlers:
         - event: Opened(indexed uint256,indexed address,indexed address)
           handler: handleOpen
@@ -34,4 +33,4 @@ dataSources:
           handler: handleBorrow
         - event: Repaid(indexed uint256,uint256,indexed address)
           handler: handleRepaid
-      file: ./src/mapping.ts
+      file: VaultsCore/VaultsCore.wasm
